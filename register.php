@@ -1,6 +1,3 @@
-<?php include "partials/header.php" ?>
-<?php include "partials/navbar.php" ?>
-
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -12,17 +9,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $password = $_POST['password'];
             $passwordAgain = $_POST['password-again'];
             if($password!== $passwordAgain) {
-                $_SESSION['notice'] = "A két jelszó nem egyezik!";
+                $_SESSION['notice'] = "The passwords are not the same!";
                 return false;
             } else if ($users->registerUser($email, $familyname, $firstname, $password)) {
-                $_SESSION['notice'] = "Sikeres regisztráció!";
+                $_SESSION['notice'] = "Successfully registrated!";
             } else {
                 if (!isset($_SESSION['notice'])) {
-                    $_SESSION['notice'] = "Sikertelen regisztráció!";
+                    $_SESSION['notice'] = "Error while registrating!";
                 }
             }
         } else {
-            $_SESSION['notice'] = "Az ASZF elfogadása kötelező!";
+            $_SESSION['notice'] = "You have to accept the terms and conditions!";
             redirect("register.php");
         }
     }
@@ -35,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <div class="center">
     <form class="user" method="post">
-        <h1>Regisztráció</h1>
+        <h1>Registration</h1>
         <?php if (isset($_SESSION['notice'])): ?>
         <div class="notice">
             <h3><?php echo $_SESSION['notice'] ?></h3>
@@ -43,32 +40,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php endif; ?>
         <div class="give-name" style="display: flex;">
             <div>
-                <label for="family-name">Vezetéknév:</label>
+                <label for="family-name">Lastname:</label>
                 <input type="text" name="family-name" placeholder="| <?php echo $_SESSION['family-name'] ?? "" ?>">
             </div>
             <div>
-                <label for="first-name">Keresztnév:</label>
+                <label for="first-name">Firstname:</label>
                 <input type="text" name="first-name" placeholder="| <?php echo $_SESSION['first-name'] ?? "" ?>">
             </div>
         </div>
-        <label for="email">E-mail cím:</label>
+        <label for="email">E-mail:</label>
         <input type="email" name="email" placeholder="| <?php echo $_SESSION['email'] ?? "" ?>">
-        <label for="password">Jelszó:</label>
+        <label for="password">Password:</label>
         <input type="password" name="password" placeholder="| ">
-        <label for="password">Jelszó ismét:</label>
+        <label for="password">Password:</label>
         <input type="password" name="password-again" placeholder="| ">
         <div style="display: grid; align-items: center; justify-content: center;">
-            <label for="aszf">Elolvastam, és elfogadom az <a class="red" href="aszf">ÁSZF</a>-t.</label>
+            <label for="aszf">I read and accept the <a class="red" href="aszf">terms and conditions</a>.</label>
             <input type="checkbox" name="aszf" style="height: 1rem;">
         </div>
         <div class="center" style="display: flex; flex-direction: column;">
             <input class="button default" name="submit" type="submit" value="Regisztráció" style="width: 50%">
-            <a href="login.php">Van már fiókod?</a>
+            <a href="login.php">Login</a>
         </div>
     </form>
 </div>
 
 <?php
-include "partials/footer.php";
 unset($_SESSION['first-name'], $_SESSION['family-name'], $_SESSION['email']);
 ?>

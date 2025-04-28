@@ -1,6 +1,4 @@
 <?php
-include "init.php";
-
 unset($_SESSION['logged-in']);
 unset($_SESSION['user']);
 

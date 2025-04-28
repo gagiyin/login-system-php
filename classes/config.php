@@ -1,8 +1,8 @@
 <?php
 
-const DB_HOST = 'obscurenetwork.hu';
-const DB_NAME = 'grindhouse';
-const DB_USER = 'grindhouse';
-const DB_PASS = 'LOL0w080ti';
+const DB_HOST = 'localhost';
+const DB_NAME = 'name';
+const DB_USER = 'user';
+const DB_PASS = 'asdasd123123';
 
 ?>
